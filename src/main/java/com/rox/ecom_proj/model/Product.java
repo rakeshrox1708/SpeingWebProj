@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,15 +26,22 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String desc;
+	private String description;
 	private String brand;
 	private BigDecimal price;
 	private String category;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date releaseDate;
-	private boolean available;
-	private int quantity;
+	private boolean productAvailable;
+	private int stockQuantity;
+	
+	private String ImageName;
+	private String ImageType;
+	
+	@Lob
+	private byte[] ImageData;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -46,12 +54,7 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+	
 	public String getBrand() {
 		return brand;
 	}
@@ -76,17 +79,42 @@ public class Product {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public boolean isAvailable() {
-		return available;
+	
+	public String getDescription() {
+		return description;
 	}
-	public void setAvailable(boolean available) {
-		this.available = available;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public int getQuantity() {
-		return quantity;
+	public boolean isProductAvailable() {
+		return productAvailable;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setProductAvailable(boolean productAvailable) {
+		this.productAvailable = productAvailable;
+	}
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+	public String getImageName() {
+		return ImageName;
+	}
+	public void setImageName(String imageName) {
+		ImageName = imageName;
+	}
+	public String getImageType() {
+		return ImageType;
+	}
+	public void setImageType(String imageType) {
+		ImageType = imageType;
+	}
+	public byte[] getImageData() {
+		return ImageData;
+	}
+	public void setImageData(byte[] imageData) {
+		ImageData = imageData;
 	}
 	
 	
